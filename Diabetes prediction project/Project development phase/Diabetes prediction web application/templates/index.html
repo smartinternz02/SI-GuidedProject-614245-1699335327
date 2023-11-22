@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f0f0;
+        }
+
+        h1, h2, p, form {
+            text-align: center;
+        }
+
+        #homepage, #question-page {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div id="homepage">
+        <div class="welcome-text">
+            <h1>Welcome to Diabetes Prediction</h1>
+            <p>Take control of your health. Predict your risk of diabetes.</p>
+        </div>
+        <button onclick="startPrediction()">Start</button>
+    </div>
+
+    <div id="question-page" style="display: none;">
+        <h2>Diabetes Prediction</h2>
+    <form action="/predict" method="post">
+        <label for="HighBP">High Blood Pressure:</label>
+        <select id="HighBP" name="HighBP" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select><br>
+
+        <label for="HighChol">High Cholesterol:</label>
+        <select id="HighChol" name="HighChol" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select><br>
+
+        <label for="CholCheck">Cholesterol Checked:</label>
+        <select id="CholCheck" name="CholCheck" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select><br>
+
+        <label for="BMI">BMI:</label>
+        <input type="text" id="BMI" name="BMI" required><br>
+
+        <label for="Smoker">Smoker:</label>
+        <select id="Smoker" name="Smoker" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select><br>
+
+        <label for="Stroke">Stroke:</label>
+        <select id="Stroke" name="Stroke" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select><br>
+
+        <label for="HeartDiseaseorAttack">Heart Disease or Attack:</label>
+        <select id="HeartDiseaseorAttack" name="HeartDiseaseorAttack" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select><br>
+
+        <label for="PhysActivity">Physical Activity:</label>
+        <select id="PhysActivity" name="PhysActivity" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select><br>
+
+        <label for="Fruits">Fruits Consumed per Day:</label>
+        <select id="Fruits" name="Fruits" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select><br>
+
+        <label for="Veggies">Veggies Consumed per Day:</label>
+        <select id="Veggies" name="Veggies" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select><br>
+
+        <label for="HvyAlcoholConsump">Heavy Alcohol Consumption:</label>
+        <select id="HvyAlcoholConsump" name="HvyAlcoholConsump" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select><br>
+
+        <label for="AnyHealthcare">Health Care Access:</label>
+        <select id="AnyHealthcare" name="AnyHealthcare" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select><br>
+
+        <label for="NoDocbcCost">Enough Money to Afford a Doctor:</label>
+        <select id="NoDocbcCost" name="NoDocbcCost" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select><br>
+
+        <label for="GenHlth">General Health:</label>
+        <select id="GenHlth" name="GenHlth" required>
+            <option value="Excellent">Excellent</option>
+            <option value="Very Good">Very Good</option>
+            <option value="Good">Good</option>
+            <option value="Fair">Fair</option>
+            <option value="Poor">Poor</option>
+        </select><br>
+
+        <label for="MentHlth">Days of Bad Mental Health:</label>
+        <input type="text" id="MentHlth" name="MentHlth" required><br>
+
+        <label for="PhysHlth">Days of Bad Physical Health:</label>
+        <input type="text" id="PhysHlth" name="PhysHlth" required><br>
+
+        <label for="DiffWalk">Difficulty in Walking:</label>
+        <select id="DiffWalk" name="DiffWalk" required>
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select><br>
+
+        <label for="Sex">Sex:</label>
+        <select id="Sex" name="Sex" required>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+        </select><br>
+
+        <label for="Age">Age Ranges:</label>
+        <select id="Age" name="Age" required>
+            <option value="1">1 - 13</option>
+            <option value="2">14 - 18</option>
+            <option value="3">19 - 30</option>
+            <option value="4">31 - 40</option>
+            <option value="5">41 - 50</option>
+            <option value="6">51 - 60</option>
+            <option value="7">61 - 70</option>
+            <option value="8">71 - 80</option>
+            <option value="9">81 - 90</option>
+            <option value="10">91 - 100</option>
+        </select><br>
+
+        <label for="Education">Education Levels:</label>
+        <select id="Education" name="Education" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select><br>
+
+        <label for="Income">Income Levels:</label>
+        <select id="Income" name="Income" required>
+            <option value="1">Less than 8 Lakhs</option>
+            <option value="2">8 - 16 Lakhs</option>
+            <option value="3">16 - 24 Lakhs</option>
+            <option value="4">24 - 32 Lakhs</option>
+            <option value="5">32 - 40 Lakhs</option>
+            <option value="6">40 - 48 Lakhs</option>
+            <option value="7">48 - 60 Lakhs</option>
+            <option value="8">60 Lakhs and above</option>
+        </select><br>
+
+        <input type="submit" value="Predict">
+    </form>
+    </div>
+
+    <script>
+        function startPrediction() {
+            // Hide the homepage
+            document.getElementById('homepage').style.display = 'none';
+
+            // Show the question page
+            document.getElementById('question-page').style.display = 'block';
+
+            // Add your code to load questions or initiate animations here
+            // You can use libraries like Anime.js for animations
+            // Example: anime({ targets: '.welcome-text', translateY: -30, opacity: 0, duration: 500 });
+        }
+    </script>
+</body>
+</html>
